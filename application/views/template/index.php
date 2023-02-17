@@ -3,10 +3,10 @@
                 <div class="container-sm">
                     <div class="hero-inner">
                         <h1 class="hero-title h2-mobile mt-0 is-revealing" style="font-size: 35px !important;">Aplikasi Pelaporan Pengaduan Masyarakat</h1>
-                        <p class="hero-paragraph is-revealing" >Our landing page template works for all the devices, so you only have to setup it once, and get beautiful results forever.</p>
+                        <p class="hero-paragraph is-revealing" >Our landing page tempaslate works for all the devices, so you only have to setup it once, and get beautiful results forever.</p>
                         <p class="hero-cta is-revealing"><a class="button button-secondary button-shadow" href="#">Get started now</a></p>
                         <div class="hero-media">
-                        </div>
+                        </div> nalsalk
                     </div>
                 </div>
             </section>
