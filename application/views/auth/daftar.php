@@ -13,7 +13,7 @@
 	.login {
 		display: flex;
 		justify-content: center;
-		margin-top: 150px;
+		margin-top: 50px;
 	}
 
 	form {
@@ -32,29 +32,40 @@
 	<div class="login">
 		<div class="card">
 			<div class="card-body">
-				<form class="">
+				<form class="" method="post" action="<?= base_url('auth/daftar')?>">
                     <div class="logo text-center mb-4 mt-1">
                         <h4>Registrasi</h4>
                     </div>
 
 					<div class="form-outline mb-4">
 						<label class="form-label" for="form2Example1">Nik</label>
-						<input type="" id="form2Example1" class="form-control" />
+						<input type="text" name="nik" class="form-control" />
+						<small class="text-danger"><?= form_error('nik')?></small>
 					</div>
 
+					<div class="form-outline mb-4">
+						<label class="form-label" for="form2Example1">Nama</label>
+						<input type="text" name="name" class="form-control" />
+						<small class="text-danger"><?= form_error('name')?></small>
+					</div>
+					<div class="form-outline mb-4">
+						<label class="form-label" for="form2Example1">No Telepon</label>
+						<input type="text" name="telp" class="form-control" />
+						<small class="text-danger"><?= form_error('telp')?></small>
+					</div>
 					<div class="form-outline mb-4">
 						<label class="form-label" for="form2Example1">Username</label>
-						<input type="" id="form2Example1" class="form-control" />
+						<input type="text" name="username" class="form-control" />
+						<small class="text-danger"><?= form_error('username')?></small>
 					</div>
-
-					<!-- Password input -->
 					<div class="form-outline mb-4">
-						<label class="form-label" for="form2Example2">Password</label>
-						<input type="" id="form2Example2" class="form-control" />
+						<label class="form-label" for="form2Example1">Password</label>
+						<input type="password" name="password" class="form-control" />
+						<small class="text-danger"><?= form_error('password')?></small>
 					</div>
 
 					<div class="row m-1 mb-3">
-                        <button class="bg-primary text-white text-center p-2">Submit</button>
+                        <button type="submit" class="bg-primary text-white text-center p-2">Submit</button>
                     </div>
 
 				

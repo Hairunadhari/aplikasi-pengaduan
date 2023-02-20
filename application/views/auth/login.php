@@ -32,24 +32,26 @@
 	<div class="login">
 		<div class="card">
 			<div class="card-body">
-				<form class="">
+				<form class="" method="post" action="<?= base_url('auth')?>">
                     <div class="logo text-center mb-4 mt-1">
                         <h4>Login</h4>
                     </div>
-
+					<?= $this->session->flashdata('message')?>
 					<div class="form-outline mb-4">
 						<label class="form-label" for="form2Example1">Username</label>
-						<input type="email" id="form2Example1" class="form-control" />
+						<input type="text" name="username" class="form-control" />
+						<small class="text-danger"><?= form_error('username')?></small>
 					</div>
 
 					<!-- Password input -->
 					<div class="form-outline mb-4">
 						<label class="form-label" for="form2Example2">Password</label>
-						<input type="password" id="form2Example2" class="form-control" />
+						<input type="password" name="password" class="form-control" />
+						<small class="text-danger"><?= form_error('password')?></small>
 					</div>
 
 					<div class="row m-1">
-                        <button class="bg-primary text-white text-center p-2">Submit</button>
+                        <button type="submit" class="bg-primary text-white text-center p-2">Login</button>
                     </div>
 
 					<!-- Register buttons -->
