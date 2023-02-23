@@ -98,7 +98,7 @@ class Auth extends CI_Controller {
         $this->session->unset_userdata('id_level');
 
         
-        $this->session->set_flashdata('message', '<div class="alert alert-danger  alert-dismissible fade show" role="alert" align="center">Logout berhasil!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-succes  alert-dismissible fade show" role="alert" align="center">Logout berhasil!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
         redirect('auth/login');
     }
 	public function login()
