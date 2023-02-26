@@ -7,6 +7,7 @@ class Auth extends CI_Controller {
 		parent::__construct();
         $this->load->model('auth_model');
         $this->load->library('form_validation');
+        $this->load->library('session');
 	}
 
     public function index(){
@@ -34,11 +35,15 @@ class Auth extends CI_Controller {
             if(password_verify($password, $masyarakat['password'])){
                 
                 $data = [
+                    'id' => $masyarakat['id'],
+                    'nik' => $masyarakat['nik'],
+                    'name' => $masyarakat['name'],
+                    'telp' => $masyarakat['telp'],
                     'username' => $masyarakat['username'],
+                    'password' => $masyarakat['password'],
                     'id_level' => $masyarakat['id_level'],
                 ];
                 $this->session->set_userdata($data);
-                // var_dump($data);die;
                 redirect('Home');
 
             } else {
@@ -96,7 +101,6 @@ class Auth extends CI_Controller {
     public function logout(){
         $this->session->unset_userdata('username');
         $this->session->unset_userdata('id_level');
-
         
         $this->session->set_flashdata('message', '<div class="alert alert-succes  alert-dismissible fade show" role="alert" align="center">Logout berhasil!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
         redirect('auth/login');

@@ -13,7 +13,17 @@
                         <li>
                             <a class="button button-sm button-shadow" href="#">Signup</a>
                         </li>
+                        <?php if ($this->session->userdata('username')) { ?>
+                            <li>
+                                <a href="<?= base_url('auth/logout')?>">logout</a>
+                            </li>
+                            <li>
+                                <a href="#">halooo <?php echo $this->session->userdata('username'); ?></a>
+                            </li>
+                        <?php } ?>
+                        
                     </ul>
                 </div>
             </div>
         </header>
+

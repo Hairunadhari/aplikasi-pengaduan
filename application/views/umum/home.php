@@ -1,3 +1,4 @@
+
 <main>
 	<section class="hero text-light ">
 		<div class="container-sm" >
@@ -7,8 +8,7 @@
                         Pelaporan dan Pengaduan Masyarakat</h1>
                     <p class="hero-paragraph is-revealing">Sampaikan laporan Anda dengan menggunakan Aplikasi Laporan dan
                         Pengaduan Masyarakat</p>
-                    <p class="hero-cta is-revealing"><a class="button button-secondary button-shadow" href="#">Get started
-                            now</a></p>
+                    
                 </div>
 
 				<div class="w-75 m-auto p-3 mb-5"
@@ -17,31 +17,67 @@
 						style="background-image: linear-gradient(57deg, #00B4DB, #0083B0); height: 60px; ">
 						<p class="m-auto text-center" style="font-size:23px; font-weight:700;">Sampaikan Laporan Anda</p>
 					</div>
-					<form style="color: black; ">
-						<div class=" mt-3" style="">
-                        <label style="font-size:15px;" class="form-label">Nik :</label>
-							<input type="text" class="form-control" style="font-size:14px;" placeholder="Nik">
+					<?php if ($this->session->userdata('username')) { ?>
+						<form style="color: black; " method="post" action="<?= base_url('Home/add_pengaduan')?>" enctype="multipart/form-data">
+						<div hidden class=" mt-3" style="">
+							<label style="font-size:15px;" class="form-label">id</label>
+							<input type="text" name="id_masyarakat" value="<?= $masyarakat['id']; ?>" class="form-control" style="font-size:14px;" placeholder="Nik">
 						</div>
+						<div class=" mt-3" style="">
+							<label style="font-size:15px;" class="form-label">Nik</label>
+							<input type="text" name="nik" value="<?= $masyarakat['nik']; ?>" class="form-control" style="font-size:14px;" placeholder="Nik">
+						</div>
+							
 						<div class=" mt-3" style="">
                         <label style="font-size:15px;" class="form-label">Nama :</label>
-							<input type="text" class="form-control" style="font-size:14px;" placeholder="Nama">
-						</div>
-						<div class=" mt-3" style="">
-                        <label style="font-size:15px;" class="form-label">Isi Laporan :</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" placeholder="Ketik Isi Laporan Anda *" style="font-size:14px;" ></textarea>
+							<input type="text" name="name" value="<?= $masyarakat['name']; ?>" class="form-control" style="font-size:14px;" placeholder="Nama">
 						</div>
                         <div class=" mt-3" style="">
-                        <label style="font-size:15px;" class="form-label">No. Telepon :</label>
-							<input type="text" class="form-control" style="font-size:14px;" placeholder="no telp">
+							<label style="font-size:15px;" class="form-label">No. Telepon :</label>
+							<input type="text" name="telp" value="<?= $masyarakat['telp']; ?>" class="form-control" style="font-size:14px;" placeholder="no telp">
+						</div>
+						<div class=" mt-3" style="">
+						<label style="font-size:15px;" class="form-label">Isi Laporan :</label>
+						<textarea class="form-control" name="isi_laporan" id="exampleFormControlTextarea1" rows="7" placeholder="Ketik Isi Laporan Anda *" style="font-size:14px;" ></textarea>
 						</div>
                         <div class="mt-3 mb-3" style="">
                             <label style="font-size:15px;" class="form-label">Foto :</label>
-							<input type="file" class="form-control" rowspan="1" style="font-size:14px;" placeholder="no telp">
+							<input type="file" name="foto"  class="form-control" rowspan="1" style="font-size:14px;" placeholder="no telp">
 						</div>
 						
 						
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</form>
+					<?php } else {?>
+						<form style="color: black; ">
+							<div class=" mt-3" style="">
+							<label style="font-size:15px;" class="form-label">Nik :</label>
+								<input type="text" value="" class="form-control" style="font-size:14px;" placeholder="Nik">
+							</div>
+							<div class=" mt-3" style="">
+							<label style="font-size:15px;" class="form-label">Nama :</label>
+								<input type="text" class="form-control" style="font-size:14px;" placeholder="Nama">
+							</div>
+							<div class=" mt-3" style="">
+							<label style="font-size:15px;" class="form-label">Isi Laporan :</label>
+							<textarea class="form-control" id="exampleFormControlTextarea1" rows="7" placeholder="Ketik Isi Laporan Anda *" style="font-size:14px;" ></textarea>
+							</div>
+							<div class=" mt-3" style="">
+							<label style="font-size:15px;" class="form-label">No. Telepon :</label>
+								<input type="text" class="form-control" style="font-size:14px;" placeholder="no telp">
+							</div>
+							<div class="mt-3 mb-3" style="">
+								<label style="font-size:15px;" class="form-label">Foto :</label>
+								<input type="file" class="form-control" rowspan="1" style="font-size:14px;" placeholder="no telp">
+							</div>
+							
+							
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					<?php }?>
+					
+					
+
 				</div>
 
 			</div>
