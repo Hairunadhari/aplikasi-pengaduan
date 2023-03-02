@@ -29,19 +29,20 @@ class Auth extends CI_Controller {
          // Mengambil data user dan employee berdasarkan username
          $petugas = $this->auth_model->get_petugas_by_username($username);
          $masyarakat = $this->auth_model->get_masyarakat_by_username($username);
+        //  var_dump($masyarakat);die;
 
         
         if($masyarakat){
             if(password_verify($password, $masyarakat['password'])){
                 
                 $data = [
-                    'id' => $masyarakat['id'],
+                    'masyarakat_id' => $masyarakat['masyarakat_id'],
                     'nik' => $masyarakat['nik'],
                     'name' => $masyarakat['name'],
                     'telp' => $masyarakat['telp'],
                     'username' => $masyarakat['username'],
                     'password' => $masyarakat['password'],
-                    'id_level' => $masyarakat['id_level'],
+                    'status' => $masyarakat['status'],
                 ];
                 $this->session->set_userdata($data);
                 redirect('Home');
@@ -55,8 +56,9 @@ class Auth extends CI_Controller {
             if($petugas){
                 if(password_verify($password, $petugas['password'])){
                     $data = [
+                        'petugas_id' => $petugas['petugas_id'],
                         'username' => $petugas['username'],
-                        'id_level' => $petugas['id_level'],
+                        'role_id' => $petugas['role_id'],
                     ];
                     $this->session->set_userdata($data);
                     // var_dump($data);die;
@@ -75,7 +77,7 @@ class Auth extends CI_Controller {
 
 	public function daftar()
 	{
-        $this->form_validation->set_rules('nik', 'Nik', 'trim|required');
+        // $this->form_validation->set_rules('nik', 'Nik', 'trim|required');
         $this->form_validation->set_rules('name', 'Name', 'trim|required');
         $this->form_validation->set_rules('telp', 'No Telepon', 'trim|required');
         $this->form_validation->set_rules('username', 'Username', 'trim|required');
@@ -90,7 +92,6 @@ class Auth extends CI_Controller {
                 'telp' => $this->input->post('telp'),
                 'username' => $this->input->post('username'),
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                'id_level' => 3
             );
             // var_dump($data);die;
             $this->db->insert('masyarakat',$data);
@@ -100,7 +101,7 @@ class Auth extends CI_Controller {
 
     public function logout(){
         $this->session->unset_userdata('username');
-        $this->session->unset_userdata('id_level');
+        $this->session->unset_userdata('role_id');
         
         $this->session->set_flashdata('message', '<div class="alert alert-succes  alert-dismissible fade show" role="alert" align="center">Logout berhasil!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
         redirect('auth/login');

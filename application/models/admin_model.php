@@ -9,6 +9,21 @@ class admin_model extends CI_Model {
         $this->db->join('pengaduan','masyarakat.masyarakat_id = pengaduan.id_masyarakat','right');  
         return $this->db->get()->result_array();
     }
+   
+    
+    function get_file_foto($id){
+        $this->db->select('foto');
+        $this->db->from('pengaduan');
+        $this->db->where('id', $id);
+        return $this->db->get()->row_array();
+    }
+    
+    public function ubah_status_proses_pengaduan($where, $data_status){
+        // var_dump($where);
+        // die;
+        $this->db->where('id',$where);
+        $this->db->update('pengaduan', $data_status);
+    }
     public function ambil_id_pengaduan($id)
     {
         $this->db->select('masyarakat.masyarakat_id, masyarakat.name, pengaduan.id, pengaduan.isi_laporan, pengaduan.foto, pengaduan.status');
@@ -18,12 +33,5 @@ class admin_model extends CI_Model {
         return $this->db->get()->row_array();
     }
 
-    function get_file_foto($id){
-        $this->db->select('foto');
-        $this->db->from('pengaduan');
-        $this->db->where('id', $id);
-        return $this->db->get()->row_array();
-      }
-    
      
 }

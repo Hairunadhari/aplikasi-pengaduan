@@ -31,8 +31,11 @@ class Administrator extends CI_Controller {
 
 	public function daftar_pengaduan()
 	{
+        $id = $this->input->post('id');
 		$path = "";
         $data['pengaduan'] = $this->admin->get_all_pengaduan();
+        // var_dump($data['pengaduan']);die;
+        // $data['petugas'] = $this->admin->ambil_id_petugas($id);
         $data = array(
             "page" => $this->load("Aministrator", $path),
             "title" => "Semua Pengaduan",
@@ -91,25 +94,43 @@ class Administrator extends CI_Controller {
         
     public function delete_pengaduan($id){
         $this->db->delete('pengaduan', ['id' => $id]);
+        $this->db->delete('tanggapan', ['id_pengaduan' => $id]);
         // $this->session->set_flashdata('message', '<div class="alert alert-success text-center p-1 alert-dismissible fade show" role="alert">Data berhasil dihapus!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
         redirect('Administrator/daftar_pengaduan');
     }
         
-    public function tanggapan(){
-        $dataM = [
-            'masyarakat_id' => $this->input->post('masyarakat_id'),
-            'name' => $this->input->post('name'),
+    public function input_tanggapan(){
+        $data = [
+            'id_pengaduan' => $this->input->post('id_pengaduan'),
+            'tgl_tanggapan' => date('Y-m-d H:i'),
+            'tanggapan' => $this->input->post('tanggapan'),
+            'id_petugas' => $this->input->post('id_petugas'),
         ];
-            // var_dump($dataM);die;
-        $this->db->where('masyarakat_id', $this->input->post('masyarakat_id'));
-         $this->db->update('masyarakat', $dataM);
-    
-        $dataP = [
-            'isi_laporan' => $this->input->post('isi_laporan'),
+        $this->db->insert('tanggapan', $data);
+
+        $data_status = [
+            'status' =>  'Selesai',
         ];
-        $this->db->where('id', $this->input->post('id'));
-        $this->db->update('pengaduan', $dataP);
+        $this->db->where('id', $this->input->post('id_pengaduan'));
+        $this->db->update('pengaduan', $data_status);
+        // var_dump($where);die;
         redirect('Administrator/daftar_pengaduan');
     }
+    public function terimaPengaduan()
+	{
+		
+		$dataPengaduan = array(
+			'status' => 'selesai',
+		);
+
+		$this->db->where('id', $this->input->post('id_pengaduan'));
+		$updatePengaduan = $this->db->update('pengaduan', $dataPengaduan);
+
+		if($insertTanggapan || $updatePengaduan){
+			redirect($_SERVER['HTTP_REFERER']);
+		}else{
+			redirect($_SERVER['HTTP_REFERER']);
+		}
+	}
 }
 ?>

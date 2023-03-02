@@ -25,9 +25,9 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$path = "";
-		$id = $this->session->userdata('id');
+		$id = $this->session->userdata('masyarakat_id');
 		$data['masyarakat'] = $this->auth_model->getall_data_masyarakat_by_id($id);
-		// var_dump($data);die;
+		// var_dump($data['masyarakat']);die;
         $data = array(
             "page" => $this->load("Home", $path),
             "title" => "Home",
@@ -60,23 +60,15 @@ class Home extends CI_Controller {
 		$foto =   $this->input_foto();
 		
 		$datapengaduan = [
-			'tgl_pengaduan' => date('Y-m-d H:i:s'),
+			'tgl_pengaduan' => date('Y-m-d H:i'),
 			'id_masyarakat' => $this->input->post('id_masyarakat'),
 			'isi_laporan' => $this->input->post('isi_laporan'),
 			'foto' => $foto['file_name'],
-			'status' => 'Pengadun Baru'
+			'status' => 'Diproses'
 		];
 		// var_dump($datapengaduan);die;
 		$this->db->insert('pengaduan', $datapengaduan);
 		redirect('Home');
 
 	}
-
-	
-	
-    
- 
-   
-
-    
 }

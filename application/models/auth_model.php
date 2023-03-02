@@ -11,8 +11,8 @@ class auth_model extends CI_Model {
     }
 
     public function getall_data_masyarakat_by_id($id) {
-        $query = $this->db->get_where('masyarakat', array('id' => $id));
-        return $query->row_array(); // Mengembalikan nilai parameter
+        return $this->db->get_where('masyarakat', array('masyarakat_id' => $id))->row_array();
+      
     }
      
 }

@@ -14,14 +14,14 @@
 				<div class="w-75 m-auto p-3 mb-5"
 					style=" background-color: white; box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
 					<div class="row m-auto"
-						style="background-image: linear-gradient(57deg, #00B4DB, #0083B0); height: 60px; ">
+						style="background:#696cff;; height: 60px; ">
 						<p class="m-auto text-center" style="font-size:23px; font-weight:700;">Sampaikan Laporan Anda</p>
 					</div>
 					<?php if ($this->session->userdata('username')) { ?>
 						<form style="color: black; " method="post" action="<?= base_url('Home/add_pengaduan')?>" enctype="multipart/form-data">
-						<div hidden class=" mt-3" style="">
+						<div  hidden class=" mt-3" style="">
 							<label style="font-size:15px;" class="form-label">id</label>
-							<input type="text" name="id_masyarakat" value="<?= $masyarakat['id']; ?>" class="form-control" style="font-size:14px;" placeholder="Nik">
+							<input type="text" name="id_masyarakat" value="<?= $masyarakat['masyarakat_id']; ?>" class="form-control" style="font-size:14px;" placeholder="Nik">
 						</div>
 						<div class=" mt-3" style="">
 							<label style="font-size:15px;" class="form-label">Nik</label>
