@@ -33,5 +33,10 @@ class admin_model extends CI_Model {
         return $this->db->get()->row_array();
     }
 
-     
+    public function get_akun()
+    {
+        $this->db->select('*');
+        $this->db->from('petugas');  
+        return $this->db->get()->result_array();
+    }    
 }

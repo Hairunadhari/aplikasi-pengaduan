@@ -132,5 +132,19 @@ class Administrator extends CI_Controller {
 			redirect($_SERVER['HTTP_REFERER']);
 		}
 	}
+
+    public function account()
+	{   
+		$path = "";
+        $data['akun'] = $this->admin->get_akun();
+      
+        // $data['petugas'] = $this->admin->ambil_id_petugas($id);
+        $data = array(
+            "page" => $this->load("Aministrator", $path),
+            "title" => "Semua Pengaduan",
+            "content" => $this->load->view('admin/account', $data, true)
+        );
+        $this->load->view('template_admin/default', $data);
+	}
 }
 ?>
