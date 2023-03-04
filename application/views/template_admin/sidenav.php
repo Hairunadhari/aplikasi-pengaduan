@@ -90,29 +90,13 @@
                 <div data-i18n="Basic">Semua Pengaduan</div>
               </a>
             </li>
-            <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Account Settings">Account Settings</div>
+            <li class="menu-item  <?php if(uri_string() == 'Administrator/account') echo 'active'; ?>">
+              <a href="<?= base_url('Administrator/account')?>" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">User Management</div>
               </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="<?= base_url('Administrator/account')?>" class="menu-link">
-                    <div data-i18n="Account">Account</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="pages-account-settings-notifications.html" class="menu-link">
-                    <div data-i18n="Notifications">Notifications</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="pages-account-settings-connections.html" class="menu-link">
-                    <div data-i18n="Connections">Connections</div>
-                  </a>
-                </li>
-              </ul>
             </li>
+            
           </ul>
         </aside>
         <!-- / Menu -->

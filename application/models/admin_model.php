@@ -32,11 +32,24 @@ class admin_model extends CI_Model {
         $this->db->where('pengaduan.id', $id);  
         return $this->db->get()->row_array();
     }
+    public function ambil_id_akun($id)
+    {
+        $this->db->select('*');
+        $this->db->from('petugas');  
+        $this->db->where('petugas_id', $id);  
+        return $this->db->get()->row_array();
+    }
 
     public function get_akun()
     {
         $this->db->select('*');
         $this->db->from('petugas');  
+        return $this->db->get()->result_array();
+    }    
+    public function get_role()
+    {
+        $this->db->select('*');
+        $this->db->from('role');  
         return $this->db->get()->result_array();
     }    
 }

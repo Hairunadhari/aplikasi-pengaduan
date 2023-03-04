@@ -74,7 +74,7 @@ class Administrator extends CI_Controller {
         );
 		$this->load->view('template_admin/default', $data);
     }
-
+    
     public function update_pengaduan(){
         $dataM = [
             'masyarakat_id' => $this->input->post('masyarakat_id'),
@@ -146,5 +146,64 @@ class Administrator extends CI_Controller {
         );
         $this->load->view('template_admin/default', $data);
 	}
+    public function edit_account($id)
+    {
+        $this->load->library('encryption');
+        $path = "";
+        $data['pengaduan'] = $this->admin->ambil_id_akun($id);
+        // var_dump($data['pengaduan']);die; 
+        $data = array(
+            "page" => $this->load("Administrator", $path),
+            "title" => "Edit Pengaduan",
+            "content" => $this->load->view('admin/edit_account', $data, true)
+        );
+        $this->load->view('template_admin/default', $data);
+    }
+    public function update_account(){
+        $data = [
+            'name' => $this->input->post('name'),
+            'username' => $this->input->post('username'),
+            'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+            'telp' => $this->input->post('telp'),
+        ];
+        // var_dump($data);die;
+        $this->db->where('petugas_id', $this->input->post('petugas_id'));
+        $this->db->update('petugas', $data);
+        $this->session->set_flashdata('message', '<div  class="alert m-1 text-center alert-success alert-dismissible" role="alert">User berhasil di edit! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> </button></div>');
+        redirect('Administrator/account');
+    }
+
+public function form_add_account()
+	{
+		$path = "";
+        $data['role'] = $this->admin->get_role();
+        // var_dump($data);die;
+        $data = array(
+            "page" => $this->load("Aministrator", $path),
+            "title" => "Dashboard",
+            "content" => $this->load->view('admin/add_account', $data, true)
+        );
+        $this->load->view('template_admin/default', $data);
+	}
+
+    public function add_account(){
+        $data = [
+            'name' => $this->input->post('name'),
+            'username' => $this->input->post('username'),
+            'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+            'telp' => $this->input->post('telp'),
+            'role_id' => $this->input->post('role_id'),
+        ];
+        // var_dump($data);die;
+        $this->db->insert('petugas', $data);
+        $this->session->set_flashdata('message', '<div class="alert m-1 text-center alert-success alert-dismissible" role="alert">User berhasil ditambahkan! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> </button></div>');
+        redirect('Administrator/account');
+    }
+
+    public function delete_account($id){
+        $this->db->delete('petugas', ['petugas_id' => $id]);
+        $this->session->set_flashdata('message', '<div class="alert m-1 text-center alert-success alert-dismissible" role="alert">User berhasil dihapus! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> </button></div>');
+        redirect('Administrator/account');
+    }
 }
 ?>
